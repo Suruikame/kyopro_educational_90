@@ -21,16 +21,6 @@ func main(){
         }
     }
     print(ans)
-    for i in 1...H {
-        for j in 1...W {
-            if light[i][j] {
-                print("#", terminator: "")
-            } else {
-                print(".", terminator: "")
-            }
-        }
-        print()
-    }
 }
 
 main()
