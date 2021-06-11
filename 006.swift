@@ -1,11 +1,12 @@
-import Foundation
 func readInts() -> [Int]{
     return readLine()!.split(separator: " ").map{Int(String($0))!}
 }
 
 func main(){
+    //入力
     let inputs = readInts()
     let (N, K) = (inputs[0], inputs[1])
+    //SをIntで持つ
     let S = Array(readLine()!).map {$0 - "a"}
     var c = TwoDimensionalArray<Int>(1_000_000, (N, 26))
 
@@ -30,11 +31,12 @@ func main(){
             }
         }
     }
+    //出力
+    var ansForPrint = ""
     for s in ans {
-        print(s, terminator: "")
+        ansForPrint += "\(s)"
     }
-    print("\n")
-    
+    print(ansForPrint + "\n")
 }
 
 main()
@@ -93,7 +95,6 @@ extension Character{
 }
 
 //二次元配列
-//[[Element]]は遅いので。
 struct TwoDimensionalArray<Element> {
     var elements: [Element]
     var count: (Int, Int)
@@ -114,6 +115,7 @@ struct TwoDimensionalArray<Element> {
     }
 
 }
+//デバッグ用
 extension TwoDimensionalArray: CustomStringConvertible where Element: CustomStringConvertible {
     var description: String {
         var ret = "["
