@@ -1,3 +1,41 @@
+func main() {
+    //入力
+    let N = Int(readLine()!)!
+    let S = Array(readLine()!)
+    //配列は再利用
+    var dp: [ModInt] = Array(repeating: 0, count: 7)
+    if S[0] == "a" {
+        dp[0] = 1
+    }
+    for i in 1..<N {
+        let chr = S[i]
+        switch chr{
+        case "a":
+            dp[0] = dp[0]+1
+        case "t":
+            dp[1] = dp[1]+dp[0]
+        case "c":
+            dp[2] = dp[2]+dp[1]
+        case "o":
+            dp[3] = dp[3]+dp[2]
+        case "d":
+            dp[4] = dp[4]+dp[3]
+        case "e":
+            dp[5] = dp[5]+dp[4]
+        case "r":
+            dp[6] = dp[6]+dp[5]
+        default:
+            break
+        }
+    }
+
+print(dp[6])
+}
+
+main()
+        
+///ModInt
+///遅いので時間が厳しい時は使わない
 protocol Modulo {
     static var value: Int {get}
     static var isPrime: Bool {get}
@@ -235,36 +273,22 @@ class Comb {
     }
 }
 
-let N = Int(readLine()!)!
-let S = Array(readLine()!)
-var dp: [[ModInt]] = Array(repeating: Array(repeating: 0, count: 7), count: N)
-if S[0] == "a" {
-    dp[0][0] = 1
-}
-for i in 1..<N {
-    let chr = S[i]
-    dp[i] = dp[i-1]
-    switch chr{
-        case "a":
-        dp[i][0] = dp[i-1][0]+1
-        case "t":
-        dp[i][1] = dp[i-1][1]+dp[i-1][0]
-        case "c":
-        dp[i][2] = dp[i-1][2]+dp[i-1][1]
-        case "o":
-        dp[i][3] = dp[i-1][3]+dp[i-1][2]
-        case "d":
-        dp[i][4] = dp[i-1][4]+dp[i-1][3]
-        case "e":
-        dp[i][5] = dp[i-1][5]+dp[i-1][4]
-        case "r":
-        dp[i][6] = dp[i-1][6]+dp[i-1][5]
-        default:
-        dp[0][1]=0
+struct TwoDimensionalArray<Element> {
+    var elements: [Element]
+    var count: (Int, Int)
+    init(repeating initialValue: Element, count: (Int, Int)) {
+        self.elements = Array(repeating: initialValue, count: count.0 * count.1)
+        self.count = count
+    }
+    init(_ initialValue: Element, _ count: (Int, Int)) {
+        self.init(repeating: initialValue, count: count)
+    }
+    subscript(i: Int, j: Int) -> Element {
+        get {
+            return elements[self.count.1 * i + j]
+        }
+        set {
+            elements[self.count.1 * i + j] = newValue
+        }
     }
 }
-
-print(dp[N-1][6])
-        
-          
-
