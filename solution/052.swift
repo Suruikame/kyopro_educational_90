@@ -1,12 +1,12 @@
-func readInts() -> [Int] {
+func readInts() -> [Int]{
     return readLine()!.split(separator: " ").map{Int(String($0))!}
 }
 
-func main() {
-    let N = Int(readLine()!)!
+func main(){
+    let MOD = Int(1e9) + 7
     var ans = 1
-    for _ in 0..<N {
-        ans = ans * readInts().reduce(0, +) % Int(1e9+7)
+    for _ in 0..<Int(readLine()!)! {
+        ans = ans * readInts().reduce(0, +) % MOD
     }
     print(ans)
 }
