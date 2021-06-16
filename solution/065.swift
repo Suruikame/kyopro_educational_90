@@ -10,8 +10,6 @@ func readInts() -> [Int]{
 /// n! (階乗)を計算したい時は n.factorial()
 struct ModInt {
     static let mod: Int = 998244353
-    static let moduloIsPrime: Bool = true
-    static var factorsTableCreated: Bool = false
     let value: Int
     init(_ value: Int) {
         let m = ModInt.mod
