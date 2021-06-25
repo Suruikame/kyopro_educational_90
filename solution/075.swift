@@ -16,7 +16,8 @@ func main(){
         }
         i += 1
     }
-    print(cnt.bitWidth - cnt.leadingZeroBitCount + (cnt.nonzeroBitCount == 1 ? -1 : 0))
+    cnt -= 1
+    print(cnt.bitWidth - cnt.leadingZeroBitCount)
 }
 
 main()
